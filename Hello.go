@@ -25,6 +25,7 @@ func main() {
   switchControl()
   arrays()
   slices()
+  maps()
 }
 
 func echo(str ...interface{}) {
@@ -39,7 +40,7 @@ func heading(chap int, title string) {
     c = strconv.Itoa(chap)
   }
   echo()
-  echo("**")
+  echo("************************")
   echo(c, "-", title)
   echo()
 }
@@ -177,7 +178,7 @@ func switchControl() {
     case int:
       echo("I'm an int")
     default:
-      echo("Don't know type %T/n", t)
+      fmt.Printf("Don't know type %T\n", t)
     }
   }
 
@@ -255,4 +256,28 @@ func slices() {
     }
   }
   fmt.Println("2d: ", twoD)
+}
+
+func maps() {
+  heading(10, "Maps")
+
+  m := make(map[string]int)
+
+  m["k1"] = 7
+  m["k2"] = 13
+  echo("map:", m)
+
+  v1 := m["k1"]
+  echo("v1:", v1)
+
+  echo("len:", len(m))
+
+  delete(m, "k2")
+  echo("map:", m)
+
+  _, prs := m["k2"]
+  echo("prs:", prs)
+
+  n := map[string]int{"foo": 1, "bar": 2}
+  echo("map:", n)
 }
