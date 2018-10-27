@@ -27,6 +27,7 @@ func main() {
   slices()
   maps()
   ranges()
+  functions()
 }
 
 func echo(str ...interface{}) {
@@ -315,4 +316,22 @@ func ranges() {
   for i, c := range "go" {
     echo(i, c)
   }
+}
+
+func plus(a int, b int) int {
+  return a + b
+}
+
+func plusPlus(a, b, c int) int {
+  return a + b + c
+}
+
+func functions() {
+  heading(12, "Functions")
+
+  res := plus(1, 2)
+  echo("1+2 =", res)
+
+  res = plusPlus(1, 2, 3)
+  echo("1+2+3 =", res)
 }
