@@ -26,6 +26,7 @@ func main() {
   arrays()
   slices()
   maps()
+  ranges()
 }
 
 func echo(str ...interface{}) {
@@ -280,4 +281,38 @@ func maps() {
 
   n := map[string]int{"foo": 1, "bar": 2}
   echo("map:", n)
+}
+
+func ranges() {
+  heading(11, "Ranges")
+
+  nums := []int{2, 3, 4}
+  sum := 0
+  for _, num := range nums {
+    sum += num
+  }
+  echo("sum:", sum)
+
+  for i, num := range nums {
+    if num == 3 {
+      echo("index:", i)
+    }
+  }
+
+  kvs := map[string]string{"a": "apple", "b": "banana"}
+  for k, v := range kvs {
+    fmt.Printf("%s -> %s\n", k, v)
+  }
+
+  for k := range kvs {
+    echo("key:", k)
+  }
+
+  for _, v := range kvs {
+    echo("val:", v)
+  }
+
+  for i, c := range "go" {
+    echo(i, c)
+  }
 }
