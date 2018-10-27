@@ -28,6 +28,7 @@ func main() {
   maps()
   ranges()
   functions()
+  multipleReturn()
 }
 
 func echo(str ...interface{}) {
@@ -318,14 +319,6 @@ func ranges() {
   }
 }
 
-func plus(a int, b int) int {
-  return a + b
-}
-
-func plusPlus(a, b, c int) int {
-  return a + b + c
-}
-
 func functions() {
   heading(12, "Functions")
 
@@ -334,4 +327,27 @@ func functions() {
 
   res = plusPlus(1, 2, 3)
   echo("1+2+3 =", res)
+}
+
+func plus(a int, b int) int {
+  return a + b
+}
+
+func plusPlus(a, b, c int) int {
+  return a + b + c
+}
+
+func multipleReturn() {
+  heading(13, "Multiple Return Functions")
+
+  a, b := vals()
+  echo("a:", a)
+  echo("b:", b)
+
+  _, c := vals()
+  echo("c:", c)
+}
+
+func vals() (int, int) {
+  return 3, 7
 }
