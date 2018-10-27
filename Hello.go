@@ -2,18 +2,38 @@ package main
 
 import "fmt"
 import "math"
+import "time"
 
 const s string = "constant"
 
 func main() {
+  helloWorld()
+  values()
+  variables()
+  constants()
+  forLoop()
+  ifElse()
+  switchControl()
+}
+
+func echo(str ...interface{}) {
+  fmt.Println(str)
+}
+
+func helloWorld() {
   echo("Hello World")
+}
+
+func values() {
   echo("go" + "lang")
   echo("1 + 1 = ", 1+1)
   echo("7.0/3.0 = ", 7.0/3.0)
   echo(true && false)
   echo(true || false)
   echo(!true)
+}
 
+func variables() {
   var a = "initial"
   echo(a)
 
@@ -28,7 +48,9 @@ func main() {
 
   f := "short"
   echo(f)
+}
 
+func constants() {
   echo(s)
 
   const n = 500000000
@@ -37,7 +59,9 @@ func main() {
   echo(g)
   echo(int64(g))
   echo(math.Sin(n))
+}
 
+func forLoop() {
   i := 1
   for i <= 3 {
     echo(i)
@@ -59,7 +83,9 @@ func main() {
     }
     echo(n)
   }
+}
 
+func ifElse() {
   if 7%2 == 0 {
     echo("7 is even")
   } else {
@@ -79,6 +105,45 @@ func main() {
   }
 }
 
-func echo(str ...interface{}) {
-  fmt.Println(str)
+func switchControl() {
+  i := 2
+  echo("Write ", i, " as ")
+  switch i {
+  case 1:
+    echo("one")
+  case 2:
+    echo("two")
+  case 3:
+    echo("three")
+  }
+
+  switch time.Now().Weekday() {
+  case time.Saturday, time.Sunday:
+    echo("It's the weekend")
+  default:
+    echo("It's a weekday")
+  }
+
+  t := time.Now()
+  switch {
+  case t.Hour() < 12:
+    echo("It's before noon")
+  default:
+    echo("It's after noon")
+  }
+
+  whatAmI := func(i interface{}) {
+    switch t := i.(type) {
+    case bool:
+      echo("I'm a bool")
+    case int:
+      echo("I'm an int")
+    default:
+      echo("Don't know type %T/n", t)
+    }
+  }
+
+  whatAmI(true)
+  whatAmI(1)
+  whatAmI("hey")
 }
