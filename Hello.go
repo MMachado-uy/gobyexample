@@ -1,8 +1,17 @@
+/**
+ * golang tests and examples. Based in the exercises of:
+ * gobyexample.com
+ * @author Mauricio Machado <macmauricio@gmail.com>
+ * @since Oct, 2018
+ */
 package main
 
-import "fmt"
-import "math"
-import "time"
+import (
+  "fmt"
+  "math"
+  "strconv"
+  "time"
+)
 
 const s string = "constant"
 
@@ -15,17 +24,35 @@ func main() {
   ifElse()
   switchControl()
   arrays()
+  slices()
 }
 
 func echo(str ...interface{}) {
   fmt.Println(str...)
 }
 
+func heading(chap int, title string) {
+  var c string
+  if chap < 10 {
+    c = "0" + strconv.Itoa(chap)
+  } else {
+    c = strconv.Itoa(chap)
+  }
+  echo()
+  echo("**")
+  echo(c, "-", title)
+  echo()
+}
+
 func helloWorld() {
+  heading(1, "Hello World")
+
   echo("Hello World")
 }
 
 func values() {
+  heading(2, "Values")
+
   echo("go" + "lang")
   echo("1 + 1 = ", 1+1)
   echo("7.0/3.0 = ", 7.0/3.0)
@@ -35,6 +62,8 @@ func values() {
 }
 
 func variables() {
+  heading(3, "Variables")
+
   var a = "initial"
   echo(a)
 
@@ -52,6 +81,8 @@ func variables() {
 }
 
 func constants() {
+  heading(4, "Constants")
+
   echo(s)
 
   const n = 500000000
@@ -63,6 +94,8 @@ func constants() {
 }
 
 func forLoop() {
+  heading(5, "For Loops")
+
   i := 1
   for i <= 3 {
     echo(i)
@@ -87,6 +120,8 @@ func forLoop() {
 }
 
 func ifElse() {
+  heading(6, "If/Else")
+
   if 7%2 == 0 {
     echo("7 is even")
   } else {
@@ -107,6 +142,8 @@ func ifElse() {
 }
 
 func switchControl() {
+  heading(7, "Switch")
+
   i := 2
   echo("Write ", i, " as ")
   switch i {
@@ -150,6 +187,8 @@ func switchControl() {
 }
 
 func arrays() {
+  heading(8, "Arrays")
+
   var a [5]int
   echo("emp:", a)
 
@@ -169,4 +208,51 @@ func arrays() {
     }
   }
   echo("2d:", twoD)
+}
+
+func slices() {
+  // https://blog.golang.org/go-slices-usage-and-internals
+  heading(9, "Slices")
+
+  s := make([]string, 3)
+  echo("emp", s)
+
+  s[0] = "a"
+  s[1] = "b"
+  s[2] = "c"
+
+  echo("set:", s)
+  echo("get:", s[2])
+
+  echo("len:", len(s))
+
+  s = append(s, "d")
+  s = append(s, "e", "f")
+  echo("apd:", s)
+
+  c := make([]string, len(s))
+  copy(c, s)
+  echo("cpy:", c)
+
+  l := s[2:5]
+  echo("sl1:", l)
+
+  l = s[:5]
+  echo("sl2:", l)
+
+  l = s[2:]
+  echo("sl3:", l)
+
+  t := []string{"g", "h", "i"}
+  echo("dcl:", t)
+
+  twoD := make([][]int, 3)
+  for i := 0; i < 3; i++ {
+    innerLen := i + 1
+    twoD[i] = make([]int, innerLen)
+    for j := 0; j < innerLen; j++ {
+      twoD[i][j] = i + j
+    }
+  }
+  fmt.Println("2d: ", twoD)
 }
