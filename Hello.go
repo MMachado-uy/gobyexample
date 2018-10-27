@@ -14,10 +14,11 @@ func main() {
   forLoop()
   ifElse()
   switchControl()
+  arrays()
 }
 
 func echo(str ...interface{}) {
-  fmt.Println(str)
+  fmt.Println(str...)
 }
 
 func helloWorld() {
@@ -146,4 +147,26 @@ func switchControl() {
   whatAmI(true)
   whatAmI(1)
   whatAmI("hey")
+}
+
+func arrays() {
+  var a [5]int
+  echo("emp:", a)
+
+  a[4] = 100
+  echo("set:", a)
+  echo("get:", a[4])
+
+  echo("len:", len(a))
+
+  b := [5]int{1, 2, 3, 4, 5}
+  echo("dcl:", b)
+
+  var twoD [2][3]int
+  for i := 0; i < 2; i++ {
+    for j := 0; j < 3; j++ {
+      twoD[i][j] = i + j
+    }
+  }
+  echo("2d:", twoD)
 }
