@@ -34,6 +34,7 @@ func main() {
   recursion()
   pointers()
   structs()
+  methods()
 }
 
 func echo(str ...interface{}) {
@@ -455,4 +456,30 @@ func structs() {
 type person struct {
   name string
   age  int
+}
+
+func methods() {
+  heading(19, "Methods")
+
+  r := rect{width: 10, height: 5}
+
+  echo("area:", r.area())
+  echo("perim:", r.perim())
+
+  rp := &r
+  echo("area:", rp.area())
+  echo("perim:", rp.perim())
+
+}
+
+type rect struct {
+  width, height int
+}
+
+func (r *rect) area() int {
+  return r.width * r.height
+}
+
+func (r rect) perim() int {
+  return 2*r.width + 2*r.height
 }
