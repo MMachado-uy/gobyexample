@@ -35,6 +35,7 @@ func main() {
   pointers()
   structs()
   methods()
+  interfaces()
 }
 
 func echo(str ...interface{}) {
@@ -482,4 +483,49 @@ func (r *rect) area() int {
 
 func (r rect) perim() int {
   return 2*r.width + 2*r.height
+}
+
+// http://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go
+func interfaces() {
+  heading(20, "Interfaces")
+
+  r := rectI{width: 3, height: 4}
+  c := circleI{radius: 5}
+
+  measure(r)
+  measure(c)
+}
+
+type geometry interface {
+  area() float64
+  perim() float64
+}
+
+type rectI struct {
+  width, height float64
+}
+
+type circleI struct {
+  radius float64
+}
+
+func (r rectI) area() float64 {
+  return r.width * r.height
+}
+
+func (r rectI) perim() float64 {
+  return 2*r.width + 2*r.height
+}
+
+func (c circleI) area() float64 {
+  return math.Pi * c.radius * c.radius
+}
+func (c circleI) perim() float64 {
+  return 2 * math.Pi * c.radius
+}
+
+func measure(g geometry) {
+  echo(g)
+  echo(g.area())
+  echo(g.perim())
 }
