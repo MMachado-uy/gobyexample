@@ -32,6 +32,7 @@ func main() {
   variadicFunctions()
   closures()
   recursion()
+  pointers()
 }
 
 func echo(str ...interface{}) {
@@ -406,4 +407,27 @@ func fact(n int) int {
     return 1
   }
   return n * fact(n-1)
+}
+
+func pointers() {
+  heading(17, "Pointers")
+
+  i := 1
+  echo("initial:", i)
+
+  zeroval(i)
+  echo("zeroval:", i)
+
+  zeroptr(&i)
+  echo("zeroptr:", i)
+
+  echo("pointer:", &i)
+}
+
+func zeroval(ival int) {
+  ival = 0
+}
+
+func zeroptr(iptr *int) {
+  *iptr = 0
 }
