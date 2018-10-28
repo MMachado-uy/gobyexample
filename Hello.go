@@ -29,6 +29,7 @@ func main() {
   ranges()
   functions()
   multipleReturn()
+  variadicFunctions()
 }
 
 func echo(str ...interface{}) {
@@ -350,4 +351,23 @@ func multipleReturn() {
 
 func vals() (int, int) {
   return 3, 7
+}
+
+func variadicFunctions() {
+  heading(14, "Variadic Functions")
+
+  sum(1, 2)
+  sum(1, 2, 3)
+
+  nums := []int{1, 2, 3, 4}
+  sum(nums...)
+}
+
+func sum(nums ...int) {
+  echo(nums, " ")
+  total := 0
+  for _, num := range nums {
+    total += num
+  }
+  echo(total)
 }
