@@ -31,6 +31,7 @@ func main() {
   multipleReturn()
   variadicFunctions()
   closures()
+  recursion()
 }
 
 func echo(str ...interface{}) {
@@ -392,4 +393,17 @@ func intSeq() func() int {
     i++
     return i
   }
+}
+
+func recursion() {
+  heading(16, "Recursion")
+
+  echo(fact(7))
+}
+
+func fact(n int) int {
+  if n == 0 {
+    return 1
+  }
+  return n * fact(n-1)
 }
