@@ -33,6 +33,7 @@ func main() {
   closures()
   recursion()
   pointers()
+  structs()
 }
 
 func echo(str ...interface{}) {
@@ -430,4 +431,28 @@ func zeroval(ival int) {
 
 func zeroptr(iptr *int) {
   *iptr = 0
+}
+
+func structs() {
+  heading(18, "Structs")
+
+  echo(person{"Bob", 20})
+  echo(person{name: "Alice", age: 30})
+  echo(person{name: "Fred"})
+  echo(&person{name: "Ann", age: 40})
+
+  s := person{name: "Sean", age: 50}
+  echo(s.name)
+
+  sp := &s
+  echo(sp.age)
+
+  sp.age = 51
+  echo(sp.age)
+  echo(s.age)
+}
+
+type person struct {
+  name string
+  age  int
 }
