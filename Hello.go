@@ -30,6 +30,7 @@ func main() {
   functions()
   multipleReturn()
   variadicFunctions()
+  closures()
 }
 
 func echo(str ...interface{}) {
@@ -370,4 +371,25 @@ func sum(nums ...int) {
     total += num
   }
   echo(total)
+}
+
+func closures() {
+  heading(15, "Closures")
+
+  nextInt := intSeq()
+
+  echo(nextInt())
+  echo(nextInt())
+  echo(nextInt())
+
+  newInts := intSeq()
+  echo(newInts())
+}
+
+func intSeq() func() int {
+  i := 0
+  return func() int {
+    i++
+    return i
+  }
 }
