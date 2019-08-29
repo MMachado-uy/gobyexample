@@ -7,6 +7,7 @@
 package main
 
 import (
+  "errors"
   "fmt"
   "math"
   "strconv"
@@ -528,4 +529,9 @@ func measure(g geometry) {
   echo(g)
   echo(g.area())
   echo(g.perim())
+}
+
+func errors() {
+  heading(21, "Errors")
+
 }
